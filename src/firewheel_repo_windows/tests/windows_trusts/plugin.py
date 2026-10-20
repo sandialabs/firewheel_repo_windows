@@ -6,7 +6,6 @@ from windows.domain_controller import DomainController
 from windows.windows_7_enterprise import Windows7Enterprise
 from windows.windows_server_2008_r2 import (
     WindowsServer2008R2,
-    WindowsServer2008R2Sysprep,
 )
 
 from firewheel.control.experiment_graph import Vertex, AbstractPlugin
@@ -43,7 +42,7 @@ class WindowsDomainTrusts(AbstractPlugin):
         winhost.join_domain("acme", "acme.com")
 
         dc2 = Vertex(self.g, "domain.bill.com")
-        dc2.decorate(WindowsServer2008R2Sysprep)
+        dc2.decorate(WindowsServer2008R2)
         dc2.decorate(DomainController, init_args=["bill", "bill.com", "bill"])
         dc2.connect(switch, network[10], network.netmask)
 
